@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taeyeon.zyx.dao.TbClientReportDao">
+    
+	<sql id="tbClientReportColumns">
+		a.id AS "id",
+		a.uid AS "uid",
+		a.type AS "type",
+		a.subType AS "subType",
+		a.fileUrl AS "fileUrl",
+		a.feedback AS "feedback",
+		a.reportTime AS "reportTime",
+		a.versionName AS "versionName",
+		a.versionCode AS "versionCode",
+		a.channel AS "channel",
+		a.osType AS "osType",
+		a.osVersion AS "osVersion",
+		a.deviceModel AS "deviceModel",
+		a.appName AS "appName",
+		a.deviceId AS "deviceId",
+		a.macAddr AS "macAddr",
+		a.bizType AS "bizType",
+		a.bizId AS "bizId",
+		a.fileSize AS "fileSize",
+		a.phone AS "phone",
+		a.netType AS "netType",
+		a.reserve1 AS "reserve1",
+		a.reserve2 AS "reserve2",
+		a.reserve3 AS "reserve3",
+		a.reserve4 AS "reserve4",
+		a.reserve5 AS "reserve5",
+		a.reserve6 AS "reserve6",
+		a.createDate AS "createDate",
+		a.updateDate AS "updateDate",
+		a.createBy AS "createBy",
+		a.updateBy AS "updateBy"
+	</sql>
+	
+	<sql id="tbClientReportJoins">
+	</sql>
+    
+	<select id="get" resultType="TbClientReport">
+		SELECT 
+			<include refid="tbClientReportColumns"/>
+		FROM TbClientReport a
+		<include refid="tbClientReportJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TbClientReport">
+		SELECT
+		<include refid="tbClientReportColumns"/>
+		FROM TbClientReport a
+		<where>
+			<if test="uid != null">
+				AND a.uid = #{uid}
+			</if>
+			<if test="type != null">
+				AND a.type = #{type}
+			</if>
+			<if test="phone != null">
+				AND a.phone = #{phone}
+			</if>
+			<if test="queryBeginDate != null">
+				AND a.reportTime <![CDATA[ > ]]> #{queryBeginDate}
+			</if>
+			<if test="queryEndDate != null">
+				AND a.reportTime <![CDATA[ <= ]]> #{queryEndDate}
+			</if>
+		</where>
+		ORDER BY a.reportTime DESC
+	</select>
+	
+	<select id="findAllList" resultType="TbClientReport">
+		SELECT 
+			<include refid="tbClientReportColumns"/>
+		FROM TbClientReport a
+		<include refid="tbClientReportJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO TbClientReport(
+			id,
+			uid,
+			type,
+			subType,
+			fileUrl,
+			feedback,
+			reportTime,
+			versionName,
+			versionCode,
+			channel,
+			osType,
+			osVersion,
+			deviceModel,
+			appName,
+			deviceId,
+			macAddr,
+			bizType,
+			bizId,
+			fileSize,
+			phone,
+			netType,
+			reserve1,
+			reserve2,
+			reserve3,
+			reserve4,
+			reserve5,
+			reserve6,
+			createDate,
+			updateDate,
+			createBy,
+			updateBy
+		) VALUES (
+			#{id},
+			#{uid},
+			#{type},
+			#{subType},
+			#{fileUrl},
+			#{feedback},
+			#{reportTime},
+			#{versionName},
+			#{versionCode},
+			#{channel},
+			#{osType},
+			#{osVersion},
+			#{deviceModel},
+			#{appName},
+			#{deviceId},
+			#{macAddr},
+			#{bizType},
+			#{bizId},
+			#{fileSize},
+			#{phone},
+			#{netType},
+			#{reserve1},
+			#{reserve2},
+			#{reserve3},
+			#{reserve4},
+			#{reserve5},
+			#{reserve6},
+			#{createDate},
+			#{updateDate},
+			#{createBy},
+			#{updateBy}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE TbClientReport SET 	
+			uid = #{uid},
+			type = #{type},
+			subType = #{subType},
+			fileUrl = #{fileUrl},
+			feedback = #{feedback},
+			reportTime = #{reportTime},
+			versionName = #{versionName},
+			versionCode = #{versionCode},
+			channel = #{channel},
+			osType = #{osType},
+			osVersion = #{osVersion},
+			deviceModel = #{deviceModel},
+			appName = #{appName},
+			deviceId = #{deviceId},
+			macAddr = #{macAddr},
+			bizType = #{bizType},
+			bizId = #{bizId},
+			fileSize = #{fileSize},
+			phone = #{phone},
+			netType = #{netType},
+			reserve1 = #{reserve1},
+			reserve2 = #{reserve2},
+			reserve3 = #{reserve3},
+			reserve4 = #{reserve4},
+			reserve5 = #{reserve5},
+			reserve6 = #{reserve6},
+			createDate = #{createDate},
+			updateDate = #{updateDate},
+			updateBy = #{updateBy}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM TbClientReport
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

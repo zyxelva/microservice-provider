@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true">
+
+    <!-- 用于记录需要人为补做业务日志，需要特别关注的日志-->
+    <appender name="ROLL_CRITICAL_ERROR_ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_critical_error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_critical_error_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%X{traceId}][%X{spanId}][%X{sessionUid}][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 用于记录第三方, 第二方依赖产生的日志文件 -->
+    <appender name="ROLL_FILE_ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_service_other.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_service_other_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%X{traceId}][%X{spanId}][%X{sessionUid}][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 用于记录sql 日志 -->
+    <appender name="ROLL_FILE_SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_sql_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%X{traceId}][%X{spanId}][%X{sessionUid}][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 用于记录当前项目源代码范围内产生的日志文件 -->
+    <appender name="ROLL_FILE_APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_service_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%X{traceId}][%X{spanId}][%X{sessionUid}][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLL_TRACE_FILE_APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_trace.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_trace_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%X{traceId}][%X{spanId}][%X{sessionUid}][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="ASYNC_ROLL_FILE_APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/async.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/async_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ROLL_FILE_MONITOR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_monitor.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_monitor_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLL_FILE_RMQ" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file_path}/teacher_rmq.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_file_path}/teacher_rmq_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date[%thread][%file:%line][%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- JDK相关日志配置 -->
+    <logger name="com.sun" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="java" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="javax" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="sun" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <!-- dubbo相关 -->
+    <logger name="com.alibaba.dubbo" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+
+    <!-- 第三方依赖日志配置 -->
+    <logger name="org.apache" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="net.sf" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.springframework" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="com.google" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.objectweb" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.joda" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.hibernate" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.jboss" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.codehaus" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.aopalliance" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.aspectj" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="com.mchange" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="com.mysql" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+    <logger name="org.gjt" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+
+    <!-- udb应用日志 -->
+    <logger name="cn.huanju" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_FILE_APP" />
+    </logger>
+    <logger name="cn.edu100" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_FILE_APP" />
+    </logger>
+    <logger name="com.duowan.udb" level="INFO" additivity="false">
+        <appender-ref ref="ROLL_FILE_APP" />
+    </logger>
+    <!-- MQ -->
+    <logger name="cn.huanju.edu100.teacher.mq" level="INFO" additivity="false">
+        <appender-ref ref="ROLL_FILE_RMQ" />
+    </logger>
+    <!-- 全的 tracelog日志-->
+    <logger name="trace.json.log" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_TRACE_FILE_APP" />
+    </logger>
+    <logger name="cn.edu100.dubbo.filter.ConsumerTraceFilter" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_FILE_APP" />
+    </logger>
+    <logger name="cn.edu100.dubbo.filter.ProviderTraceFilter" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_FILE_APP" />
+    </logger>
+    <!-- 严重错误 -->
+    <logger name="critical_error" level="ERROR" additivity="false">
+        <appender-ref ref="ROLL_CRITICAL_ERROR_ROOT"/>
+    </logger>
+    <logger name="cn.edu100.dubbo.filter.ConsumerExceptionFilter" level="ERROR" additivity="false">
+        <appender-ref ref="ROLL_CRITICAL_ERROR_ROOT"/>
+    </logger>
+    <logger name="cn.edu100.dubbo.filter.ProviderExceptionFilter" level="ERROR" additivity="false">
+        <appender-ref ref="ROLL_CRITICAL_ERROR_ROOT"/>
+    </logger>
+
+    <!-- SQL -->
+    <logger name="mybatis" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLL_FILE_SQL" />
+    </logger>
+
+
+
+    <!-- 监控 -->
+    <logger name="cn.huanju.edu100.monitor" level="INFO" additivity="false">
+        <appender-ref ref="ROLL_FILE_MONITOR" />
+    </logger>
+
+    <!-- 其他日志配置 -->
+    <logger name="com.yy.jserverlib" level="WARN" additivity="false">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </logger>
+
+    <!--其他 -->
+    <root level="INFO">
+        <appender-ref ref="ROLL_FILE_ROOT" />
+    </root>
+
+</configuration>

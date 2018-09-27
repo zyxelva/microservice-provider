@@ -1,4 +1,4 @@
-package controller;
+package com.taeyeon.zyx.controller;
 
 import org.junit.Before;
 import org.junit.Test;

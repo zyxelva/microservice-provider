@@ -4,6 +4,8 @@
 package com.taeyeon.zyx.entity;
 
 
+import com.taeyeon.zyx.persistence.DataEntity;
+
 import java.util.List;
 
 /**

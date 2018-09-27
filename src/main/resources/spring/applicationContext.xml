@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!-- conf -->
+    <bean id="propertyConfig"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:env.properties</value>
+                <!--<value>file:/data/webapps/appconfig/hippoconfig.properties</value>-->
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+
+    <!--<bean id="base64EnDeDoder" class="com.duowan.udb.common.BASE64EnDeDoder" />-->
+    <!--<bean id="decodePropertyConfigurer" class="com.duowan.udb.common.DecodePropertyConfigurer" lazy-init="false">-->
+    <!--<property name="locations">-->
+    <!--<list>-->
+    <!--<value>classpath:pwd.properties</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--<property name="enDeCoder" ref="base64EnDeDoder" />-->
+    <!--<property name="ignoreUnresolvablePlaceholders" value="true" />-->
+    <!--</bean>-->
+
+    <!-- course模块 -->
+    <context:component-scan base-package="com.taeyeon.zyx"><!-- base-package 如果多个，用“,”分隔 -->
+    </context:component-scan>
+
+    <import resource="classpath:/spring/applicationContext-mybatis.xml"/>
+</beans>

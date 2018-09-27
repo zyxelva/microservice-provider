@@ -3,6 +3,7 @@ package com.taeyeon.zyx.application;
 import com.taeyeon.zyx.dto.TbTeacherDto;
 import com.taeyeon.zyx.entity.TbTeacher;
 import com.taeyeon.zyx.service.TbTeacherService;
+import com.taeyeon.zyx.utils.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,6 @@ public class TeacherApplicationImpl implements TeacherApplication {
 			logger.debug("get tbTeacher error, tbTeacher is not exist. uid:{}", uid);
 			return null;
 		}
-		return null;
+		return BeanUtil.copy(tbTeacher,TbTeacherDto.class);
 	}
 }

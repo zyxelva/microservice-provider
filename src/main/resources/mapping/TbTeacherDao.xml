@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taeyeon.zyx.dao.TbTeacherDao">
+
+    <sql id="tbTeacherColumns">
+		a.uid AS "uid",		
+		a.type AS "type",
+		a.subjectId AS "subjectId",
+		a.school AS "school",
+		a.diploma AS "diploma",
+		a.diplomaPic AS "diplomaPic",
+		a.teachAge AS "teachAge",
+		a.selfIntro AS "selfIntro",
+		a.jobTitle AS "jobTitle",
+		a.teachingSchool AS "teachingSchool",
+		a.source AS "source",
+		a.state AS "state",
+		a.comment AS "comment",
+		a.updateBy AS "updateBy",
+		a.updateDate AS "updateDate",
+		a.createBy AS "createBy",
+		a.createDate AS "createDate"
+	</sql>
+
+    <sql id="tbTeacherJoins">
+    </sql>
+
+    <select id="get" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        WHERE a.uid = #{uid}
+    </select>
+
+    <select id="getByMobileStates" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        WHERE a.mobile = #{mobile}
+        <if test="stateList != null and stateList.size > 0">
+            and a.state in
+            <foreach item="item" index="index" collection="stateList"
+                     open="(" separator="," close=")">
+                '${item}'
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        <where>
+            <if test="uids != null and uids.size > 0">
+                and a.uid in
+                <foreach item="item" index="index" collection="uids"
+                         open="(" separator="," close=")">
+                    '${item}'
+                </foreach>
+            </if>
+            <if test="name != null and name != ''">
+                AND a.nick = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="findList" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        <where>
+            <if test="uids != null and uids.size > 0">
+                AND a.uid in
+                <foreach item="item" index="index" collection="uids"
+                         open="(" separator="," close=")">
+                    '${item}'
+                </foreach>
+            </if>
+            AND a.state =0
+        </where>
+        <choose>
+            <when
+                    test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.updateDate desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        <where>
+
+        </where>
+        <choose>
+            <when
+                    test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getByUid" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        <where>
+            a.uid = #{uid}
+            and a.state = 0
+        </where>
+    </select>
+
+    <select id="getByUidStates" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        <where>
+            a.uid = #{uid}
+            <if test="stateList != null and stateList.size > 0">
+                and a.state in
+                <foreach item="item" index="index" collection="stateList"
+                         open="(" separator="," close=")">
+                    '${item}'
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+		INSERT
+		INTO TbTeacher(
+		uid,
+		type,
+		subjectId,
+		school,
+		diploma,
+		diplomaPic,
+		teachAge,
+		selfIntro,
+		jobTitle,
+		teachingSchool,
+		source,
+		state,
+		comment,
+		updateBy,
+		updateDate,
+		createBy,
+		createDate
+		) VALUES (
+		#{uid},
+		#{type},
+		#{subjectId},
+		#{school},
+		#{diploma},
+		#{diplomaPic},
+		#{teachAge},
+		#{selfIntro},
+		#{jobTitle},
+		#{teachingSchool},
+		#{source},
+		#{state},
+		#{comment},
+		#{updateBy},
+		now(),
+		#{createBy},
+		now()
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE TbTeacher SET
+		subjectId = #{subjectId},
+		school = #{school},
+		diploma = #{diploma},
+		diplomaPic = #{diplomaPic},
+		teachAge = #{teachAge},
+		selfIntro = #{selfIntro},
+		jobTitle=#{jobTitle},
+		teachingSchool=#{teachingSchool},
+		source=#{source},
+		state=#{state},
+		comment=#{comment},
+		updateBy = #{updateBy}
+		WHERE uid = #{uid}
+	</update>
+
+    <update id="delete">
+		UPDATE TbTeacher SET
+		state =20,
+		updateBy = #{updateBy}
+		WHERE uid = #{uid}
+	</update>
+
+    <update id="formalize">
+		UPDATE TbTeacher SET
+		type = 1,
+		updateBy = #{updateBy}
+		WHERE uid = #{uid}
+	</update>
+
+    <select id="listByUids" resultType="TbTeacher">
+        SELECT
+        <include refid="tbTeacherColumns"/>
+        FROM TbTeacher a
+        <include refid="tbTeacherJoins"/>
+        <where>
+            a.uid in
+            <foreach collection="uids" item="uid" open="(" separator=","
+                     close=")">
+                #{uid}
+            </foreach>
+            and a.state = 0
+        </where>
+    </select>
+</mapper>
