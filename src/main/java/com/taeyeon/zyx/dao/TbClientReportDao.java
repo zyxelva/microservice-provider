@@ -10,6 +10,7 @@ import com.taeyeon.zyx.persistence.annotation.MyBatisDao;
  * @version 2018-07-17
  */
 @MyBatisDao
+//@MapperScan("com.taeyeon.zyx.dao")
 public interface TbClientReportDao extends CrudDao<TbClientReport> {
 //    TbClientReport get(@PathVariable("id") Long id);
 }
