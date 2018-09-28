@@ -23,13 +23,13 @@ public class ClientReportControl {
 
     @GetMapping("/getReportById/{id}")
     public TbClientReportDto getReportById(@PathVariable("id") Long id) {
-        System.out.println("================this is one=====================get client report start. id:{}: " + id);
+        System.out.println("================this is one-----=====================get client report start. id:{}: " + id);
         return tbClientReportApplication.get(id);
     }
 
     @GetMapping("/getReportById2/{id}")
     public ResponseEntity<TbClientReportDto> getReportById2(@PathVariable("id") String id) {
-        System.out.println("================this is two=====================get client report start. id:{}: " + id);
+        System.out.println("================this is two----==========================get client report start. id:{}: " + id);
         return ResponseEntity.ok(tbClientReportApplication.get(Long.valueOf(id)));
     }
 

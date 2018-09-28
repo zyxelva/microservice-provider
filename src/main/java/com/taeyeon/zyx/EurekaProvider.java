@@ -10,8 +10,8 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:/spring/applicationContext.xml")
 public class EurekaProvider {
 	public static void main(String[] args) {
-		System.out.print("++++++++++++++++++++++EurekaProvider Start+++++++++++++++++++++++++");
+		System.out.println("++++++++++++++++++++++EurekaProvider Start+++++++++++++++++++++++++");
 		SpringApplication.run(EurekaProvider.class, args);
-		System.out.print("======================EurekaProvider Start is Done=========================");
+		System.out.println("======================EurekaProvider Start is Done=========================");
 	}
 }
