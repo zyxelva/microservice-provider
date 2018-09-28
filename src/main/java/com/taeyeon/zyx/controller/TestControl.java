@@ -5,6 +5,7 @@ import com.taeyeon.zyx.application.TeacherApplication;
 import com.taeyeon.zyx.application.report.TbClientReportApplication;
 import com.taeyeon.zyx.dto.TbClientReportDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,8 +34,16 @@ public class TestControl implements TestApi {
 
 	@RequestMapping("/user/getReportById/{id}")
 	public TbClientReportDto getReportById(@PathVariable("id") Long id){
+		System.out.println("================this is one=====================");
 		System.out.println("++++++++++++++++get client report start. id:{}: "+id);
 		return tbClientReportApplication.get(id);
+	}
+
+	@RequestMapping("/user/getReportById2/{id}")
+	public ResponseEntity<TbClientReportDto> getReportById2(@PathVariable("id") String id){
+		System.out.println("================this is two=====================");
+		System.out.println("++++++++++++++++get client report start. id:{}: "+id);
+		return ResponseEntity.ok(tbClientReportApplication.get(Long.valueOf(id)));
 	}
 
 	@RequestMapping("/user/getById/{id}")
