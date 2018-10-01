@@ -1,13 +1,18 @@
 package com.taeyeon.zyx.service.impl;
 
 import com.taeyeon.zyx.dao.TbClientReportDao;
+import com.taeyeon.zyx.dto.TbClientReportDto;
 import com.taeyeon.zyx.entity.TbClientReport;
 import com.taeyeon.zyx.service.CrudService;
 import com.taeyeon.zyx.service.TbClientReportService;
+import com.taeyeon.zyx.utils.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Service("tbClientReportService")
@@ -42,4 +47,16 @@ public class TbClientReportServiceImpl extends CrudService<TbClientReportDao, Tb
         return nowTimeStamp;
     }
 
+    @Override
+    public List<TbClientReport> listByIds(Collection<Long> ids) {
+        return dao.listByIds(ids);
+    }
+
+    @Transactional
+    @Override
+    public Long add(TbClientReportDto tbClientReportDto) {
+        TbClientReport tbClientReport = BeanUtil.copy(tbClientReportDto, TbClientReport.class);
+        dao.insert(tbClientReport);
+        return tbClientReport.getId();
+    }
 }

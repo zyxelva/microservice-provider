@@ -88,6 +88,19 @@
 		</choose>
 	</select>
 
+	<select id="listByIds" resultType="TbClientReport">
+		SELECT
+		<include refid="tbClientReportColumns"/>
+		FROM TbClientReport a
+		<include refid="tbClientReportJoins"/>
+		<where>
+			a.id in
+			<foreach collection="ids" item="id" open="(" separator=","
+					 close=")">
+				#{id}
+			</foreach>
+		</where>
+	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO TbClientReport(

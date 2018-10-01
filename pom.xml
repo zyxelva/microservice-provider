@@ -20,6 +20,7 @@
 		<spring.cloud.version>1.5.16.RELEASE</spring.cloud.version>
 		<skipTest>true</skipTest>
 		<spring.version>4.3.17.RELEASE</spring.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -71,12 +72,6 @@
 			<version>2.0.1.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test-autoconfigure</artifactId>
@@ -103,6 +98,24 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.44</version>
 		</dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+		<dependency>
+			<groupId>cn.edu100.infra</groupId>
+			<artifactId>edu100-base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
