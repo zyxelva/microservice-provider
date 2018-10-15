@@ -1,9 +1,9 @@
 package com.taeyeon.zyx.application.report;
 
-import cn.huanju.edu100.exception.ServiceException;
 import com.taeyeon.zyx.common.Page;
 import com.taeyeon.zyx.dto.ReportParamDto;
 import com.taeyeon.zyx.dto.TbClientReportDto;
+import com.taeyeon.zyx.exception.ServiceException;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.taeyeon.zyx.application;
 
-import cn.huanju.edu100.util.EduGsonUtils;
 import com.taeyeon.zyx.application.report.TbClientReportApplication;
 import com.taeyeon.zyx.common.Page;
 import com.taeyeon.zyx.dto.ReportParamDto;
 import com.taeyeon.zyx.dto.TbClientReportDto;
+import com.taeyeon.zyx.utils.GsonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class ClientApplicationTest {
         reportParam.setUid(50005023L);
         Page<TbClientReportDto> clientReportDtoPage = tbClientReportApplication.page(reportParam);
         Assert.assertNotNull(clientReportDtoPage);
-        System.out.println("+++++++++++"+ EduGsonUtils.toJson(clientReportDtoPage));
+        System.out.println("+++++++++++"+ GsonUtils.toJson(clientReportDtoPage));
 
     }
 

@@ -49,12 +49,6 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.taeyeon.zyx</groupId>
-			<artifactId>microservice-base</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -111,10 +105,28 @@
             <scope>test</scope>
         </dependency>
 		<dependency>
-			<groupId>cn.edu100.infra</groupId>
-			<artifactId>edu100-base</artifactId>
+			<groupId>com.taeyeon.zyx</groupId>
+			<artifactId>microservice-base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
+
+		<!-- es -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>6.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>transport</artifactId>
+			<version>6.4.2</version>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>cn.edu100.infra</groupId>-->
+			<!--<artifactId>edu100-es</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		<!--</dependency>-->
 
 	</dependencies>
 

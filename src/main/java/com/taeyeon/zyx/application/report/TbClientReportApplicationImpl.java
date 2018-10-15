@@ -1,11 +1,11 @@
 package com.taeyeon.zyx.application.report;
 
-import cn.huanju.edu100.exception.ServiceException;
 import com.taeyeon.zyx.common.ErrCodeConsts;
 import com.taeyeon.zyx.common.Page;
 import com.taeyeon.zyx.dto.ReportParamDto;
 import com.taeyeon.zyx.dto.TbClientReportDto;
 import com.taeyeon.zyx.entity.TbClientReport;
+import com.taeyeon.zyx.exception.ServiceException;
 import com.taeyeon.zyx.service.TbClientReportService;
 import com.taeyeon.zyx.utils.BeanUtil;
 import com.taeyeon.zyx.utils.CommUtil;
@@ -96,7 +96,7 @@ public class TbClientReportApplicationImpl implements TbClientReportApplication 
         if (tbClientReportDto == null) {
             throw new ServiceException(ErrCodeConsts.BussinessError.ParamLost, "tbClientReportDto");
         }
-        if (!cn.huanju.edu100.util.CommUtil.isValid(tbClientReportDto.getUid())) {
+        if (!CommUtil.isValid(tbClientReportDto.getUid())) {
             logger.error("validateAdd,but uid is null, dto :{}.", tbClientReportDto.toString());
             throw new ServiceException(ErrCodeConsts.ReportError.UidEmpty);
         }

@@ -19,6 +19,7 @@ public class TbTeacher extends DataEntity<TbTeacher> {
     private static final long serialVersionUID = -1686002139318426670L;
 
     private Long uid; //uid
+    private String nick;//姓名
     private Integer type;//老师类型 1 正式老师 2 MOCK老师
     private Integer subjectId; // 科目ID
     private String school; // 毕业学校
@@ -145,5 +146,13 @@ public class TbTeacher extends DataEntity<TbTeacher> {
 
     public void setUids(List<Long> uids) {
         this.uids = uids;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 }
