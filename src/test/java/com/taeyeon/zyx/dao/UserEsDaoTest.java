@@ -25,7 +25,7 @@ public class UserEsDaoTest {
     public void testEsIndex() throws ParseException {
         TbTeacher tbUser = new TbTeacher();
         tbUser.setUid(2L);
-        tbUser.setNick("100教育 zhoujielun");
+        tbUser.setNick("测试 zhoujielun");
 //        tbUser.setBirthday(DateUtils.parseDateTimeSec("1982-09-01 00:00:00"));
         Boolean result = userEsDao.index(tbUser);
         Assert.assertTrue(result);
@@ -33,7 +33,7 @@ public class UserEsDaoTest {
 
     @Test
     public void testProfileNameSearch(){
-        TbTeacher tbUser = userEsDao.getByName("100教育戴支荣");
+        TbTeacher tbUser = userEsDao.getByName("测试名字123zyx");
         Assert.assertNotNull(tbUser);
         System.out.println(GsonUtils.toJson(tbUser));
     }

@@ -34,8 +34,8 @@ import java.util.List;
 public class UserEsDaoImpl extends ElasticClientBase implements UserEsDao {
     private static final Logger logger = LoggerFactory.getLogger(UserEsDaoImpl.class);
 
-    private String index = "usercenter_profile";//索引库的名字
-    private String mappingType = "doc";//索引库中profile的mapping名字
+    private String index = "user_profile";//索引库的名字
+    private String mappingType = "user";//索引库中profile的mapping名字
     @Override
     public boolean index(TbTeacher teacher) {
         if (teacher == null) {
@@ -105,13 +105,8 @@ public class UserEsDaoImpl extends ElasticClientBase implements UserEsDao {
                 .field("uid", profile.getUid())
                 .field("nick", profile.getNick())
 //                .field("mobile", profile.getMobile())
-//                .field("sex", profile.getSex())
-//                .field("role", profile.getRole())
                 .field("realname", profile.getNick()).endObject();
-//                .field("country", profile.getCountry())
-//                .field("province", profile.getProvince())
-//                .field("city", profile.getCity())
-//                .field("email", profile.getEmail())
+//
 //                .field("birthday", null == profile.getBirthday() ? null:DateUtils.formatDate(profile.getBirthday(), DateUtils.YEAR_TO_SEC))
 //                .field("idCard", profile.getIdCard()).endObject();
     }
